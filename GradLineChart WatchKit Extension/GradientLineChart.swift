@@ -24,6 +24,7 @@ class GradientLineChart {
     
     private var maxScores: ScorePair?
     private let lineWidth: CGFloat = 2
+    private let circleDiameter: CGFloat = 4
     private var graphPoints = [GraphPoint]()
     
     func reload(for interfaceImage: WKInterfaceImage, size: CGSize) {
@@ -72,7 +73,7 @@ class GradientLineChart {
         var endPoint: CGPoint?
 
         let graphPath = UIBezierPath()
-        
+        var maxPoint = CGPoint(x: 0, y: size.height)
         for point in graphPoints {
             let xMultiplier = CGFloat(point.xScore / maxScores.x)
             let yMultiplier = 1 - CGFloat(point.yScore / maxScores.y)
@@ -83,28 +84,43 @@ class GradientLineChart {
             } else {
                 graphPath.addLine(to: graphPoint)
             }
+            maxPoint.y = min(graphPoint.y, maxPoint.y)
             endPoint = graphPoint
         }
         UIColor.blue.setStroke()
         graphPath.lineWidth = lineWidth
-        graphPath.stroke()
         
-        //2 - make a copy of the path
+//        var circlePaths = [UIBezierPath]()
+//        for point in graphPoints {
+//            let xMultiplier = CGFloat(point.xScore / maxScores.x)
+//            let yMultiplier = 1 - CGFloat(point.yScore / maxScores.y)
+//            var graphPoint = CGPoint(x: size.width * xMultiplier, y: size.height * yMultiplier)
+//
+//            graphPoint.x -= circleDiameter / 2
+//            graphPoint.y -= circleDiameter / 2
+//            let circle = UIBezierPath(ovalIn: CGRect(origin: graphPoint, size: CGSize(width: circleDiameter, height: circleDiameter)))
+//            UIColor.white.setFill()
+//            circlePaths.append(circle)
+//        }
+        context.saveGState()
+        
         let clippingPath = graphPath.copy() as! UIBezierPath
-        
-        //3 - add lines to the copied path to complete the clip area
-        clippingPath.addLine(to: CGPoint(x: endPoint?.x ?? 0, y: size.height))
+        clippingPath.addLine(to: CGPoint(x: (endPoint?.x ?? 0), y: size.height))
         clippingPath.addLine(to: CGPoint(x: 0, y: size.height))
         clippingPath.close()
         
         //4 - add the clipping path to the context
         clippingPath.addClip()
         
-        let colors = [UIColor.blue.cgColor, UIColor.clear.cgColor]
+        let colors = [UIColor.gray.cgColor, UIColor.clear.cgColor]
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let colorLocations: [CGFloat] = [0.0, 1.0]
         let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: colorLocations)!
-        context.drawLinearGradient(gradient, start: .zero, end: CGPoint(x: 0, y: size.height), options: [])
+        context.drawLinearGradient(gradient, start: maxPoint, end: CGPoint(x: 0, y: size.height), options: [])
+       context.restoreGState()
+        
+        graphPath.stroke()
+//        circlePaths.forEach { $0.fill() }
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
