@@ -19,7 +19,7 @@
 		AB55C9E8222D3A1700A0325F /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB55C9E7222D3A1700A0325F /* InterfaceController.swift */; };
 		AB55C9EA222D3A1700A0325F /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB55C9E9222D3A1700A0325F /* ExtensionDelegate.swift */; };
 		AB55C9EC222D3A1800A0325F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB55C9EB222D3A1800A0325F /* Assets.xcassets */; };
-		AB8908B8222D3E1600C17698 /* GradientLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8908B7222D3E1600C17698 /* GradientLineChart.swift */; };
+		AB8908B8222D3E1600C17698 /* GradientLineChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8908B7222D3E1600C17698 /* GradientLineChartPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +81,7 @@
 		AB55C9E9222D3A1700A0325F /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		AB55C9EB222D3A1800A0325F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB55C9ED222D3A1800A0325F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB8908B7222D3E1600C17698 /* GradientLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLineChart.swift; sourceTree = "<group>"; };
+		AB8908B7222D3E1600C17698 /* GradientLineChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLineChartPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				AB55C9E7222D3A1700A0325F /* InterfaceController.swift */,
-				AB8908B7222D3E1600C17698 /* GradientLineChart.swift */,
+				AB8908B7222D3E1600C17698 /* GradientLineChartPresenter.swift */,
 				AB55C9E9222D3A1700A0325F /* ExtensionDelegate.swift */,
 				AB55C9EB222D3A1800A0325F /* Assets.xcassets */,
 				AB55C9ED222D3A1800A0325F /* Info.plist */,
@@ -299,7 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB55C9EA222D3A1700A0325F /* ExtensionDelegate.swift in Sources */,
-				AB8908B8222D3E1600C17698 /* GradientLineChart.swift in Sources */,
+				AB8908B8222D3E1600C17698 /* GradientLineChartPresenter.swift in Sources */,
 				AB55C9E8222D3A1700A0325F /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
